@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foods Added</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .back-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Food's You've Added</h2>
+        {% if logs %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Food Item</th>
+                        <th>Total Calories</th>
+                        <th>Total Protein</th>
+                        <th>Total Carbs</th>
+                        <th>Total Fats</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for log in logs %}
+                        <tr>
+                            {% for log in logs %}
+                                <tr>
+                                    <td>{{ log.food_item__name }}</td>
+                                    <td>{{ log.food_item__calories }}</td>
+                                    <td>{{ log.food_item__protein }}</td>
+                                    <td>{{ log.food_item__carbohydrates }}</td>
+                                    <td>{{ log.food_item__fats }}</td
+                                </tr>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>You haven't logged any foods yet.</p>
+        {% endif %}
+        <br>
+        <a href="{% url 'home' %}" class="back-btn">Back to Home</a>
+    </div>
+</body>
+</html>
