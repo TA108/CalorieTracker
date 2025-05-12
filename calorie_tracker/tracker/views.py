@@ -14,7 +14,7 @@ def signup(request):
             return redirect('home')
     else:
         form = SignUpForm()
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'tracker/signup.html', {'form': form})
 
 def user_login(request):
     if request.method == 'POST':
@@ -28,11 +28,11 @@ def user_login(request):
                 return redirect('home')
     else:
         form = AuthenticationForm()
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'tracker/login.html', {'form': form})
 
 @login_required
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'tracker/home.html')
 
 @login_required
 def add_food_item(request):
@@ -43,7 +43,7 @@ def add_food_item(request):
             return redirect('home')
     else:
         form = FoodItemForm()
-    return render(request, 'add_food_item.html', {'form': form})
+    return render(request, 'tracker/add_food_item.html', {'form': form})
 
 @login_required
 def add_food_log(request):
@@ -56,9 +56,9 @@ def add_food_log(request):
             return redirect('home')
     else:
         form = FoodLogForm()
-    return render(request, 'add_food_log.html', {'form': form})
+    return render(request, 'tracker/add_food_log.html', {'form': form})
 
 @login_required
 def progress_chart(request):
     logs = FoodLog.objects.filter(user=request.user)
-    return render(request, 'progress_chart.html', {'logs': logs})
+    return render(request, 'tracker/progress_chart.html', {'logs': logs})
