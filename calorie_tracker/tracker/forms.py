@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import FoodItem, FoodLog
+from django.forms.widgets import DateInput
 
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
@@ -19,3 +20,6 @@ class FoodLogForm(forms.ModelForm):
     class Meta:
         model = FoodLog
         fields = ('food_item', 'date', 'quantity')
+        widgets = {
+            'date': DateInput(attrs={'type': 'date'})
+        }

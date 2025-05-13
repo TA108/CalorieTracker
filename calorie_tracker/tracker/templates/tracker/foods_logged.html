@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Progress Chart</title>
+    <title>Foods Added</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -56,37 +56,36 @@
 </head>
 <body>
     <div class="container">
-        <h2>Your Food Log</h2>
+        <h2>Food's You've Added</h2>
         {% if logs %}
             <table>
                 <thead>
                     <tr>
                         <th>Food Item</th>
-                        <th>Date</th>
-                        <th>Quantity</th>
                         <th>Total Calories</th>
                         <th>Total Protein</th>
                         <th>Total Carbs</th>
                         <th>Total Fats</th>
-
                     </tr>
                 </thead>
                 <tbody>
                     {% for log in logs %}
                         <tr>
-                            <td>{{ log.food_item.name }}</td>
-                            <td>{{ log.date }}</td>
-                            <td>{{ log.quantity }}</td>
-                            <td>{{ log.total_calories }}</td>
-                            <td>{{ log.total_protein }}</td>
-                            <td>{{ log.total_carbohydrates }}</td>
-                            <td>{{ log.total_fats }}</td>
+                            {% for log in logs %}
+                                <tr>
+                                    <td>{{ log.food_item__name }}</td>
+                                    <td>{{ log.food_item__calories }}</td>
+                                    <td>{{ log.food_item__protein }}</td>
+                                    <td>{{ log.food_item__carbohydrates }}</td>
+                                    <td>{{ log.food_item__fats }}</td
+                                </tr>
+                            {% endfor %}
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
         {% else %}
-            <p>No food logs yet.</p>
+            <p>You haven't logged any foods yet.</p>
         {% endif %}
         <br>
         <a href="{% url 'home' %}" class="back-btn">Back to Home</a>

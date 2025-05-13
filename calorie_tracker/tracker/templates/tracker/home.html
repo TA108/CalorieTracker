@@ -55,8 +55,12 @@
         <div class="nav-buttons">
             <a href="{% url 'add_food_item' %}" class="btn">Add Food Item</a>
             <a href="{% url 'add_food_log' %}" class="btn">Log a Meal</a>
+            <a href="{% url 'foods_logged' %}" class="btn">Food's You Have Added</a>
             <a href="{% url 'progress_chart' %}" class="btn">View Progress</a>
-            <a href="{% url 'logout' %}" class="btn logout-btn">Logout</a>
+            <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn logout-btn">Logout</button>
+            </form>
         </div>
     </div>
 </body>
